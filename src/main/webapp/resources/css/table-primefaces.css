@@ -1,0 +1,79 @@
+body .ui-toolbar {
+	border: none !important;
+	padding: 20px 0 !important;
+	background-color: transparent !important;
+	color: var(--text-color) !important;
+}
+
+body .ui-datatable .ui-datatable-header {
+	border: none !important;
+	color: var(--text-color) !important;
+	background-color: var(--header-bg-color) !important;
+}
+
+body .ui-datatable .ui-datatable-data>tr {
+	background-color: var(--tr-bg-color) !important;
+	color: var(--text-color) !important;
+}
+
+body .ui-datatable .ui-datatable-data>tr.ui-state-hover {
+	background-color: var(--hover-color) !important;
+	color: var(--text-color) !important;
+}
+
+body .ui-datatable thead th {
+	background-color: var(--filtros-bg-color) !important;
+	color: var(--text-color) !important;
+	border: none;
+}
+
+body .ui-datatable thead th.ui-state-hover,
+body .ui-datatable thead th.ui-sortable-column.ui-state-focus {
+	background-color: var(--hover-color) !important;
+	color: var(--text-color) !important;
+}
+
+body .ui-chkbox .ui-chkbox-box {
+	background-color: var(--input-bg-color) !important;
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-hover, body .ui-chkbox .ui-chkbox-box.ui-state-active,
+body .ui-chkbox .ui-chkbox-box.ui-state-active.ui-state-hover {
+	background-color: var(--hover-color) !important;
+	color: var(--text-color);
+}
+
+body .ui-inputfield {
+	background-color: var(--input-bg-color);
+	color: var(--text-color);
+	border: 2px solid var(--border-color);
+}
+
+body .ui-paginator {
+	background-color: var(--tr-bg-color);
+	border: none;
+}
+
+body .ui-paginator .ui-paginator-pages .ui-paginator-page {
+	color: var(--text-color);
+}
+
+body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active {
+	background-color: var(--input-bg-color);
+	color: var(--text-color);
+}
+
+body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-hover {
+	background-color: var(--hover-color);
+	color: var(--text-color);
+}
+
+body .ui-paginator .ui-paginator-first.ui-state-hover, body .ui-paginator .ui-paginator-prev.ui-state-hover, body .ui-paginator .ui-paginator-next.ui-state-hover, body .ui-paginator .ui-paginator-last.ui-state-hover{
+	background-color: var(--hover-color);
+	color: var(--text-color);
+}
+
+body .ui-dialog .ui-dialog-titlebar, body .ui-dialog.ui-resizable .ui-dialog-content, body .ui-dialog .ui-dialog-footer {
+	background-color: var(--tr-bg-color);
+	color: var(--text-color);
+}

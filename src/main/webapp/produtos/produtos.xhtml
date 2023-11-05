@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/templates/base.xhtml">
+	<ui:define name="content">
+		<div class="card" >
+			<h:form id="form">
+				<p:growl id="messages" showDetail="true" />
+
+				<p:toolbar>
+					<p:toolbarGroup>
+						<p:commandButton value="Novo" icon="pi pi-plus"
+							actionListener="#{produtoBean.abrirNovoModel}"
+							update=":dialogs:manage-model-content"
+							oncomplete="PF('manageModelDialog').show()"
+							styleClass="ui-button-success" style="margin-right: .5rem">
+							<p:resetInput target=":dialogs:manage-model-content" />
+						</p:commandButton>
+						<p:commandButton id="delete-models-button"
+							value="#{produtoBean.botaoMensagemDeletar}" icon="pi pi-trash"
+							actionListener="#{produtoBean.deleteModelsSelecionados}"
+							styleClass="ui-button-danger"
+							disabled="#{!produtoBean.hasModelsSelecionados()}" update="@this">
+							<p:confirm header="Confirmar?"
+								message="Excluir os clientes selecionados?"
+								icon="pi pi-exclamation-triangle" />
+						</p:commandButton>
+					</p:toolbarGroup>
+					<p:toolbarGroup align="right">
+						
+					</p:toolbarGroup>
+				</p:toolbar>
+
+				<p:dataTable id="dt-models" widgetVar="dtModels" var="cliente"
+					value="#{produtoBean.models}" reflow="true"
+					styleClass="models-table"
+					selection="#{produtoBean.modelsSelecionados}" rowKey="#{cliente.id}"
+					paginator="true" rows="10" rowSelectMode="add"
+					paginatorPosition="bottom">
+					<f:facet name="header">
+						<div class="models-table-header" style="display: flex; justify-content: space-between;">
+							<span style="font-weight: bold; display: flex; justify-content: flex-start; align-items: center; flex: 1;">Clientes</span> 
+							<div style="display: flex; justify-content: flex-end;">
+								<span style="flex: 1;"
+									class="filter-container ui-input-icon-left"> <i
+									class="pi pi-search"></i> <p:inputText id="globalFilter"
+										onkeyup="PF('dtModels').filter()" placeholder="Pesquisar" />
+								</span>
+							</div>
+						</div>
+					</f:facet>
+
+					<p:ajax event="rowSelect" update=":form:delete-models-button" />
+					<p:ajax event="rowUnselect" update=":form:delete-models-button" />
+					<p:ajax event="rowSelectCheckbox"
+						update=":form:delete-models-button" />
+					<p:ajax event="rowUnselectCheckbox"
+						update=":form:delete-models-button" />
+					<p:ajax event="toggleSelect" update=":form:delete-models-button" />
+
+					<p:column selectionMode="multiple" exportable="false"></p:column>
+					
+		            <p:column headerText="Código" sortBy="#{cliente.codigo}" filterBy="#{cliente.codigo}">
+		                <h:outputText value="#{cliente.codigo}" />
+		            </p:column>
+		            
+					<p:column headerText="Nome" sortBy="#{cliente.nome}"
+						filterBy="#{cliente.nome}">
+						<h:outputText value="#{cliente.nome}" />
+					</p:column>
+					<p:column exportable="false">
+						<p:commandButton icon="pi pi-pencil"
+							update=":dialogs:manage-model-content"
+							oncomplete="PF('manageModelDialog').show()"
+							styleClass="edit-button rounded-button ui-button-success"
+							process="@this">
+							<f:setPropertyActionListener value="#{cliente}"
+								target="#{produtoBean.modelSelecionado}" />
+							<p:resetInput target=":dialogs:manage-model-content" />
+						</p:commandButton>
+						<p:commandButton class="ui-button-warning rounded-button"
+							icon="pi pi-trash" process="@this"
+							oncomplete="PF('deleteModelDialog').show()">
+							<f:setPropertyActionListener value="#{cliente}"
+								target="#{produtoBean.modelSelecionado}" />
+						</p:commandButton>
+					</p:column>
+
+				</p:dataTable>
+			</h:form>
+
+			<h:form id="dialogs">
+				<p:dialog header="Cliente Detalhes" showEffect="fade" modal="true"
+					widgetVar="manageModelDialog" responsive="true">
+					<p:outputPanel id="manage-model-content" class="ui-fluid">
+						<p:outputPanel rendered="#{not empty produtoBean.modelSelecionado}">
+							<div class="field">
+								<p:outputLabel for="name">Nome</p:outputLabel>
+								<p:inputText id="name" value="#{produtoBean.modelSelecionado.nome}"
+									required="true" />
+							</div>
+						</p:outputPanel>
+					</p:outputPanel>
+
+					<f:facet name="footer">
+						<p:commandButton value="Salvar" icon="pi pi-check"
+							actionListener="#{produtoBean.salvarModel}"
+							update="manage-model-content"
+							process="manage-model-content @this" />
+						<p:commandButton value="Cancelar" icon="pi pi-times"
+							onclick="PF('manageModelDialog').hide()"
+							class="ui-button-secondary" type="button" />
+					</f:facet>
+				</p:dialog>
+
+				<p:confirmDialog widgetVar="deleteModelDialog" showEffect="fade"
+					width="300" message="Excluir o cliente?" header="Confirmar"
+					severity="warn">
+					<p:commandButton value="Sim" icon="pi pi-check"
+						actionListener="#{produtoBean.deletarModel}" process="@this"
+						update=":form:delete-models-button"
+						oncomplete="PF('deleteModelDialog').hide()" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-button-secondary" icon="pi pi-times"
+						onclick="PF('deleteModelDialog').hide()" />
+				</p:confirmDialog>
+
+				<p:confirmDialog global="true" showEffect="fade" width="300">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no ui-button-secondary"
+						icon="pi pi-times" />
+				</p:confirmDialog>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
