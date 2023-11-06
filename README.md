@@ -1,7 +1,7 @@
 <br />
 <div align="center" id="top">
   <a href="https://linkedin.com/in/ldnovaes">
-    <img src="imagens/iconDocument.png" alt="Logo" width="80" height="80">
+    <img src="imagens/icon-document.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Projeto JSF para Gerenciamento de Vendas</h3>
@@ -84,12 +84,12 @@ git clone https://github.com/ldnovaes/vendas-online-jsf.git
 O projeto foi construído para rodar em um container docker. Ele é auto-implantável. Com isso, com apenas um comando você terá o projeto rodando em sua máquina sem maiores dores de cabeça. Usando um terminal na raiz do projeto, digite:
 
 ```sh
-docker-compose up --build -d
+docker-compose up -d
 ```
 
-O comando `--build` é responsável por buildar o projeto, enquanto o `-d` permite a execução do container mesmo que o seu terminal esteja fechado.
+O argumento `-d` permite a execução do container mesmo que o seu terminal esteja fechado.
 
-Feito isso, o projeto poderá ser executado com <a href="[https://linkedin.com/in/ldnovaes](http://localhost:8081/starter-jsf-ldnovaes/)">http://localhost:8081/gerenciamento-loja/</a>
+Feito isso, o projeto poderá ser executado com <a href="http://localhost:8089/gerenciamento-loja/">http://localhost:8089/gerenciamento-loja/</a>
 
 <p align="right">(<a href="#top">Topo</a>)</p>
 
@@ -110,8 +110,8 @@ Distribuído sob a licença MIT. Veja `LICENSE.txt` para mais informações.
 
 ## <span id="contato">Contato</span>
 
-Hotmail - [Envie-me um email](leandroduarte2012@hotmail.com)
-Linkedin - [Envie-me uma DM](https://linkedin.com/in/ldnovaes)
+* Hotmail - [Envie-me um email](leandroduarte2012@hotmail.com)
+* Linkedin - [Envie-me uma DM](https://linkedin.com/in/ldnovaes)
 
 
 <p align="right">(<a href="#top">Topo</a>)</p>
