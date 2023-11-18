@@ -1,6 +1,7 @@
 :root {
 	--header-height: 60px;
 	--app-root-height: calc(100vh - var(--header-height));
+	--footer-height: 150px;
 	--header-bg-color: #fff;
 	--menu-bg-color: #fff;
 	--border-color: #dee2e6;
@@ -47,7 +48,7 @@ header {
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	height: 60px;
+	height: 100%;
 	color: var(--text-color)
 }
 
@@ -86,7 +87,7 @@ header {
 }
 
 #app-root {
-	height: 100vh;
+	height: var(--app-root-height);
 	display: flex;
 	flex-direction: column;
 	transition: background 0.5s;
@@ -95,6 +96,7 @@ header {
 #container {
 	flex: 1;
 	left: 0;
+	height: 100%;
 }
 
 #container main {
@@ -111,7 +113,7 @@ header {
 
 #container aside {
 	background-color: var(--menu-bg-color);
-	position: fixed;
+	position: absolute;
 	border-right: 1px solid var(--border-color);
 	width: 250px;
 	min-height: 100%;
@@ -122,7 +124,7 @@ header {
 }
 
 footer {
-	height: 100px;
+	height: var(--footer-height);
 	background-color: var(--footer-bg-color);
 	color: var(--text-color);
 }

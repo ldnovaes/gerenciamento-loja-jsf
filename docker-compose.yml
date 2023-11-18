@@ -9,7 +9,7 @@ services:
     ports:
       - "15432:5432"
     volumes:
-      - ${HOME}/Documentos/Docker/gerenciamento-loja/PostgreSQL:/var/lib/postgresql/data
+      - ${HOME}/Documentos/Docker/gerenciamento-loja/PostgreSQL/gerenciamento-loja-database:/var/lib/postgresql/data
       - "./init.sql:/docker-entrypoint-initdb.d/init.sql"
   
   jsf-app:
@@ -19,16 +19,6 @@ services:
     depends_on:
       - postgres-compose
     ports:
-      - "8081:8080"
-        
-  pgadmin-compose:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "postgres@email.com"
-      PGADMIN_DEFAULT_PASSWORD: "postgres"
-    ports:
-      - "16432:80"
-    depends_on:
-      - postgres-compose
+      - "8089:8080"
 
       

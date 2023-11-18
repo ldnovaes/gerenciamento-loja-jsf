@@ -1,11 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
-</head>
-<body>
-	
-</body>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</h:head>
+
+<h:body>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<h:outputStylesheet library="css" name="table-primefaces.css" />
+
+	<div id="app-root">
+
+		<header>
+			<div id="navbar">
+
+				<div id="botao-menu">
+					<a tabindex="0"> <i style="font-size: 20px;" class="pi pi-bars"></i></a>
+				</div>
+				<div id="logo">GERENCIAMENTO</div>
+				<div id="funcoes">
+					<div id="botao-selecionar-tema">
+						<a tabindex="0"><i style="font-size: 20px;" class="pi pi-moon"></i></a>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<div id="container">
+			<aside>
+				<div id="search-menu">
+					<span class="ui-input-icon-left"> <i class="pi pi-search" />
+						<p:inputText placeholder="Search" />
+					</span>
+				</div>
+				<div class="menu">
+					<div class="tipo-menu">General</div>
+					<ul id="opcoes-sidebar">
+						<li><a href="#">Home</a></li>
+						<li><h:link value="Clientes" outcome="/clientes/clientes.xhtml" /></li>
+						<li><h:link value="Produtos" outcome="/produtos/produtos.xhtml" /></li>
+					</ul>
+					<div style="width: 100%; display: flex; align-items: center; justify-content: center;">
+					</div>
+				</div>
+			</aside>
+
+			<main id="main-content">
+				<ui:insert name="content"></ui:insert>
+			</main>
+			<footer></footer>
+		</div>
+
+	</div>
+	<h:outputScript name="sidebar-responsive.js" library="js" />
+	<h:outputScript name="select-theme.js" library="js" />
+</h:body>
 </html>
