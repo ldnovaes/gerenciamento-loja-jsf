@@ -1,14 +1,13 @@
 package br.com.ldnovaes.models;
 
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -17,12 +16,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "TB_CLIENTE")
+@Table(name = "TB_VENDA")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Cliente implements IModel{
+public class Venda implements IModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,16 +29,15 @@ public class Cliente implements IModel{
 	@Setter(value = AccessLevel.NONE)
 	private Long id;
 	
-	@Column(name = "codigo_cliente")
+	@Column(name = "codigo_produto")
 	@Getter(value = AccessLevel.NONE)
 	@Setter(value = AccessLevel.NONE)
 	private String codigo;
 	
-	@Column(name = "nome_cliente")
-	private String nome;
+	@ManyToOne
+	@JoinColumn(name="cliente_id", foreignKey = @ForeignKey(name="fk_venda_cliente"), referencedColumnName = "id", nullable = false)
+	private Cliente cliente;
 	
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
-	private List<Venda> vendas;
 
 	@Override
 	public Long getId() {
@@ -58,7 +56,7 @@ public class Cliente implements IModel{
 
 	@Override
 	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+		this.codigo = codigo;		
 	}
 
 }

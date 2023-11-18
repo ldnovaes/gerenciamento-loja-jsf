@@ -12,7 +12,7 @@ public abstract class GenericDAO<T extends IModel> implements IGenericDAO<T> {
 	private Class<T> modelClass;
 
 	@Inject
-	EntityManager entityManager;
+	protected EntityManager entityManager;
 
 	public GenericDAO(Class<T> modelClass) {
 		this.modelClass = modelClass;

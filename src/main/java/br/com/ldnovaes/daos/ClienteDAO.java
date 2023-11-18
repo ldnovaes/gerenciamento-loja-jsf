@@ -12,4 +12,11 @@ public class ClienteDAO extends GenericDAO<Cliente> implements IClienteDAO {
 		super(Cliente.class);
 	}
 	
+	@Override
+	public Cliente buscarPorNome(String nome) {
+		return this.entityManager.createQuery("SELECT c FROM Cliente c WHERE c.nome = :nome", Cliente.class)
+				.setParameter("nome", nome)
+				.getSingleResult();
+	}
+	
 }

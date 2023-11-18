@@ -17,6 +17,12 @@ public class ClienteService extends GenericService<Cliente> implements IClienteS
 		super(clienteDAO);
 		this.clienteDAO = clienteDAO;
 	}
+	
+	@Override
+	public Cliente buscarPorNome(String nome) {
+		String nomeFormatado = nome.strip();
+		return this.clienteDAO.buscarPorNome(nomeFormatado);
+	}
 
 
 }
