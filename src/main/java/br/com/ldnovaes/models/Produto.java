@@ -33,6 +33,9 @@ public class Produto implements IModel{
 
 	@Column(name = "nome_produto")
 	private String nome;
+	
+	@Column(name = "preco_unitario")
+	private Double preco;
 
 	@Override
 	public Long getId() {

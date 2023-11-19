@@ -77,3 +77,7 @@ body .ui-dialog .ui-dialog-titlebar, body .ui-dialog.ui-resizable .ui-dialog-con
 	background-color: var(--tr-bg-color);
 	color: var(--text-color);
 }
+
+.field {
+	margin-top: 15px !important;
+}

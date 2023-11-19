@@ -27,7 +27,7 @@
 							styleClass="ui-button-danger"
 							disabled="#{!produtoBean.hasModelsSelecionados()}" update="@this">
 							<p:confirm header="Confirmar?"
-								message="Excluir os clientes selecionados?"
+								message="Excluir os produtos selecionados?"
 								icon="pi pi-exclamation-triangle" />
 						</p:commandButton>
 					</p:toolbarGroup>
@@ -36,15 +36,15 @@
 					</p:toolbarGroup>
 				</p:toolbar>
 
-				<p:dataTable id="dt-models" widgetVar="dtModels" var="cliente"
+				<p:dataTable id="dt-models" widgetVar="dtModels" var="produto"
 					value="#{produtoBean.models}" reflow="true"
 					styleClass="models-table"
-					selection="#{produtoBean.modelsSelecionados}" rowKey="#{cliente.id}"
+					selection="#{produtoBean.modelsSelecionados}" rowKey="#{produto.id}"
 					paginator="true" rows="10" rowSelectMode="add"
 					paginatorPosition="bottom">
 					<f:facet name="header">
 						<div class="models-table-header" style="display: flex; justify-content: space-between;">
-							<span style="font-weight: bold; display: flex; justify-content: flex-start; align-items: center; flex: 1;">Clientes</span> 
+							<span style="font-weight: bold; display: flex; justify-content: flex-start; align-items: center; flex: 1;">Produtos</span> 
 							<div style="display: flex; justify-content: flex-end;">
 								<span style="flex: 1;"
 									class="filter-container ui-input-icon-left"> <i
@@ -65,28 +65,36 @@
 
 					<p:column selectionMode="multiple" exportable="false"></p:column>
 					
-		            <p:column headerText="Código" sortBy="#{cliente.codigo}" filterBy="#{cliente.codigo}">
-		                <h:outputText value="#{cliente.codigo}" />
+		            <p:column headerText="Código" sortBy="#{produto.codigo}" filterBy="#{produto.codigo}">
+		                <h:outputText value="#{produto.codigo}" />
 		            </p:column>
 		            
-					<p:column headerText="Nome" sortBy="#{cliente.nome}"
-						filterBy="#{cliente.nome}">
-						<h:outputText value="#{cliente.nome}" />
+					<p:column headerText="Nome" sortBy="#{produto.nome}"
+						filterBy="#{produto.nome}">
+						<h:outputText value="#{produto.nome}" />
 					</p:column>
+					
+					<p:column headerText="Preço Unitário" sortBy="#{produto.preco}"
+						filterBy="#{produto.preco}">
+						<h:outputText value="#{produto.preco}" styleClass="preco"/>
+					</p:column>
+					
 					<p:column exportable="false">
 						<p:commandButton icon="pi pi-pencil"
 							update=":dialogs:manage-model-content"
 							oncomplete="PF('manageModelDialog').show()"
 							styleClass="edit-button rounded-button ui-button-success"
 							process="@this">
-							<f:setPropertyActionListener value="#{cliente}"
+							<f:setPropertyActionListener value="#{produto}"
 								target="#{produtoBean.modelSelecionado}" />
+							<f:setPropertyActionListener value="#{produto.preco}"
+							target="#{produtoBean.precoString}" />
 							<p:resetInput target=":dialogs:manage-model-content" />
 						</p:commandButton>
 						<p:commandButton class="ui-button-warning rounded-button"
 							icon="pi pi-trash" process="@this"
 							oncomplete="PF('deleteModelDialog').show()">
-							<f:setPropertyActionListener value="#{cliente}"
+							<f:setPropertyActionListener value="#{produto}"
 								target="#{produtoBean.modelSelecionado}" />
 						</p:commandButton>
 					</p:column>
@@ -95,15 +103,23 @@
 			</h:form>
 
 			<h:form id="dialogs">
-				<p:dialog header="Cliente Detalhes" showEffect="fade" modal="true"
+				<p:dialog header="Produto Detalhes" showEffect="fade" modal="true"
 					widgetVar="manageModelDialog" responsive="true">
 					<p:outputPanel id="manage-model-content" class="ui-fluid">
 						<p:outputPanel rendered="#{not empty produtoBean.modelSelecionado}">
+						
 							<div class="field">
-								<p:outputLabel for="name">Nome</p:outputLabel>
-								<p:inputText id="name" value="#{produtoBean.modelSelecionado.nome}"
+								<p:outputLabel for="nome-produto">Nome</p:outputLabel>
+								<p:inputText id="nome-produto" value="#{produtoBean.modelSelecionado.nome}"
 									required="true" />
 							</div>
+							
+							<div class="field">
+								<p:outputLabel for="preco-produto-input">Preço Unitário</p:outputLabel>
+								<p:inputText id="preco-produto-input" value="#{produtoBean.precoString}"
+									required="true" onkeydown="mascara(this, moeda)"/>
+							</div>
+							
 						</p:outputPanel>
 					</p:outputPanel>
 
@@ -111,7 +127,7 @@
 						<p:commandButton value="Salvar" icon="pi pi-check"
 							actionListener="#{produtoBean.salvarModel}"
 							update="manage-model-content"
-							process="manage-model-content @this" />
+							process="manage-model-content @this"/>
 						<p:commandButton value="Cancelar" icon="pi pi-times"
 							onclick="PF('manageModelDialog').hide()"
 							class="ui-button-secondary" type="button" />
@@ -119,7 +135,7 @@
 				</p:dialog>
 
 				<p:confirmDialog widgetVar="deleteModelDialog" showEffect="fade"
-					width="300" message="Excluir o cliente?" header="Confirmar"
+					width="300" message="Excluir o produto?" header="Confirmar"
 					severity="warn">
 					<p:commandButton value="Sim" icon="pi pi-check"
 						actionListener="#{produtoBean.deletarModel}" process="@this"
@@ -139,6 +155,10 @@
 				</p:confirmDialog>
 			</h:form>
 		</div>
+	</ui:define>
+	
+	<ui:define name="javascript-scripts">
+		<h:outputScript name="formatar-moeda.js" library="js" />
 	</ui:define>
 </ui:composition>
 </html>

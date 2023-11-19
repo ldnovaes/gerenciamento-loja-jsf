@@ -38,6 +38,8 @@ public class Venda implements IModel {
 	@JoinColumn(name="cliente_id", foreignKey = @ForeignKey(name="fk_venda_cliente"), referencedColumnName = "id", nullable = false)
 	private Cliente cliente;
 	
+	@Column(name="quantidade")
+	private Integer quantidade;
 
 	@Override
 	public Long getId() {

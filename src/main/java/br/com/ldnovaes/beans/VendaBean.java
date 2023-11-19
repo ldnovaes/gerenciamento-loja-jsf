@@ -64,4 +64,6 @@ public class VendaBean extends GenericBean<Venda> implements Serializable{
 
         return clientesNomes.stream().filter(t -> t.toLowerCase().startsWith(queryLowerCase)).collect(Collectors.toList());
     }
+
+
 }

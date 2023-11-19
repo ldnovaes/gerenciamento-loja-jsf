@@ -19,5 +19,15 @@ public class ProdutoService extends GenericService<Produto> implements IProdutoS
 		this.produtoDao = produtoDao;
 	}
 
+	@Override
+	public Double formatarPreco(String precoString) {
+		String precoFormatado = precoString
+				.strip()
+				.replace(".", "")
+				.replace(",", ".");
+		Double preco = Double.valueOf(precoFormatado);
+		return preco;
+	}
+
 	
 }
