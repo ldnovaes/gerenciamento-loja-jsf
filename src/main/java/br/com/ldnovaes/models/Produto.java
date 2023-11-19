@@ -1,10 +1,13 @@
 package br.com.ldnovaes.models;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -36,6 +39,9 @@ public class Produto implements IModel{
 	
 	@Column(name = "preco_unitario")
 	private Double preco;
+	
+	@ManyToMany(mappedBy = "produtos")
+	private List<Venda> vendas;
 
 	@Override
 	public Long getId() {

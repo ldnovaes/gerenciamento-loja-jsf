@@ -1,5 +1,7 @@
 package br.com.ldnovaes.models;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
@@ -7,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -40,6 +44,12 @@ public class Venda implements IModel {
 	
 	@Column(name="quantidade")
 	private Integer quantidade;
+	
+	@ManyToMany
+	@JoinTable(name = "venda_produto",
+               joinColumns = @JoinColumn(name = "venda_id"),
+               inverseJoinColumns = @JoinColumn(name = "produto_id"))
+	private List<Produto> produtos;
 
 	@Override
 	public Long getId() {

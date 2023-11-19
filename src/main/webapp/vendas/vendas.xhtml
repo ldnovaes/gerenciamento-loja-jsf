@@ -45,7 +45,7 @@
 						<div class="models-table-header"
 							style="display: flex; justify-content: space-between;">
 							<span
-								style="font-weight: bold; display: flex; justify-content: flex-start; align-items: center; flex: 1;">Clientes</span>
+								style="font-weight: bold; display: flex; justify-content: flex-start; align-items: center; flex: 1;">Vendas</span>
 							<div style="display: flex; justify-content: flex-end;">
 								<span style="flex: 1;"
 									class="filter-container ui-input-icon-left"> <i
@@ -75,6 +75,7 @@
 						sortBy="#{venda.cliente.nome}" filterBy="#{venda.cliente.nome}">
 						<h:outputText value="#{venda.cliente.nome}" />
 					</p:column>
+					
 					<p:column exportable="false">
 						<p:commandButton icon="pi pi-pencil"
 							update=":dialogs:manage-model-content"
@@ -101,13 +102,24 @@
 					widgetVar="manageModelDialog" responsive="true">
 					<p:outputPanel id="manage-model-content" class="ui-fluid">
 						<p:outputPanel rendered="#{not empty vendaBean.modelSelecionado}">
+						
 							<div class="field">
 								<p:outputLabel value="Nome do Cliente" for="@next" />
 								<p:autoComplete id="nome-cliente"
 									value="#{vendaBean.nomeCliente}"
-									completeMethod="#{vendaBean.completarNomecliente}"
+									completeMethod="#{vendaBean.completarNomeCliente}"
 									scrollHeight="250" />
 							</div>
+							
+							<div class="field">
+								<p:outputLabel value="Produtos" for="@next" />
+								<p:autoComplete id="produtos-input"
+									value="#{vendaBean.produtosSelecionados}"
+									completeMethod="#{vendaBean.completarNomeProduto}"
+									scrollHeight="250" multiple="true" var="produto" itemLabel="#{produto}" itemValue="#{country}"/>
+							</div>
+							
+							
 						</p:outputPanel>
 					</p:outputPanel>
 
