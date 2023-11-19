@@ -32,8 +32,7 @@ public class VendaBean extends GenericBean<Venda> implements Serializable{
 	private IProdutoService produtoService;
 	private Cliente cliente;
 	private String nomeCliente;
-	private List<String> produtosSelecionados;
-	
+	private List<Produto> produtosSelecionados;	
 
 	public VendaBean() {
 		super(Venda.class);
@@ -49,9 +48,8 @@ public class VendaBean extends GenericBean<Venda> implements Serializable{
 	
 	@Override
 	public void salvarModel() {
-		System.out.println(this.produtosSelecionados);
 		cliente = this.clienteService.buscarPorNome(nomeCliente);
-		this.produtosSelecionados = new ArrayList<>();
+		this.getModelSelecionado().setProdutos(this.produtosSelecionados);
 		this.getModelSelecionado().setCliente(cliente);
 		super.salvarModel();
 	}
@@ -59,6 +57,7 @@ public class VendaBean extends GenericBean<Venda> implements Serializable{
 
 	public void abrirNovoModel() {
 		this.cliente = new Cliente();
+		this.produtosSelecionados = new ArrayList<>();
 		this.setModelSelecionado(new Venda());
 	}
 	
@@ -74,16 +73,10 @@ public class VendaBean extends GenericBean<Venda> implements Serializable{
     }
 	
 
-	public List<String> completarNomeProduto(String query) {
+	public List<Produto> completarProduto(String query) {
         String queryLowerCase = query.toLowerCase();
-        List<String> produtosNomes = new ArrayList<>();
         List<Produto> produtos = this.produtoService.buscarTodos();
-        
-        for (Produto produto: produtos) {
-        	produtosNomes.add(produto.getNome());
-        }
-
-        return produtosNomes.stream().filter(t -> t.toLowerCase().startsWith(queryLowerCase)).collect(Collectors.toList());
+        return produtos.stream().filter(t -> t.getNome().toLowerCase().contains(queryLowerCase)).collect(Collectors.toList());
     }
 
 
