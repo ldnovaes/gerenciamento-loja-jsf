@@ -13,6 +13,13 @@
 	--filtros-bg-color: #ededed;
 	--border-color: #ced4da;
 	--input-bg-color: #fff;
+	--paginator-bg-active: #d1d1d1;
+	--paginator-bg-hover: #e5e5e5;
+	--select-picker-bg-active: #d9d9d9;
+	--select-picker-bg-hover: #d9d9d9;
+	--select-picker-bg-color: #fff;
+	--select-picker-bg-today: #e5e5e5;
+	--selectable: #e3f2fd;
 }
 
 .dark-theme {
@@ -27,6 +34,13 @@
 	--filtros-bg-color: #333333;
 	--border-color: #4f4e4e;
 	--input-bg-color: #292828;
+	--paginator-bg-active: #1a1a1a;
+	--paginator-bg-hover: #1a1a1a;
+	--select-picker-bg-active: #353535;
+	--select-picker-bg-hover: #353535;
+	--select-picker-bg-color: #252525;
+	--select-picker-bg-today: #4b4b4b;
+	--selectable: #4d4d4d;
 }
 
 body,
@@ -49,7 +63,7 @@ header {
 	align-items: center;
 	justify-content: space-between;
 	height: 100%;
-	color: var(--text-color)
+	color: var(--text-color);
 }
 
 #botao-menu {
@@ -96,7 +110,8 @@ header {
 #container {
 	flex: 1;
 	left: 0;
-	height: 100%;
+	height: auto;
+	min-height: 100%;
 }
 
 #container main {
@@ -111,12 +126,17 @@ header {
 	color: var(--text-color);
 }
 
+.scrolled {
+	top: 0;
+	z-index: 9999;
+}
+
 #container aside {
 	background-color: var(--menu-bg-color);
-	position: absolute;
+	position: fixed;
 	border-right: 1px solid var(--border-color);
-	width: 250px;
 	min-height: 100%;
+	width: 250px;
 	transition: transform 0.7s ease;
 	display: flex;
 	flex-direction: column;

@@ -1,4 +1,4 @@
-package br.com.ldnovaes.models;
+package br.com.ldnovaes.model;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Venda implements IModel {
+public class Venda implements Persistente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

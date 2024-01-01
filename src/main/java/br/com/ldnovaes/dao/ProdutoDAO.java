@@ -1,9 +1,9 @@
-package br.com.ldnovaes.daos;
+package br.com.ldnovaes.dao;
 
 import javax.enterprise.context.RequestScoped;
 
-import br.com.ldnovaes.daos.generic.GenericDAO;
-import br.com.ldnovaes.models.Produto;
+import br.com.ldnovaes.dao.generic.GenericDAO;
+import br.com.ldnovaes.model.Produto;
 
 @RequestScoped
 public class ProdutoDAO extends GenericDAO<Produto> implements IProdutoDAO{

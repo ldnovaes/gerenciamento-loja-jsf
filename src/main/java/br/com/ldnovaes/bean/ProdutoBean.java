@@ -1,15 +1,15 @@
-package br.com.ldnovaes.beans;
+package br.com.ldnovaes.bean;
 
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
 
-import br.com.ldnovaes.models.Produto;
+import br.com.ldnovaes.bean.generic.GenericBean;
+import br.com.ldnovaes.model.Produto;
 import br.com.ldnovaes.services.IProdutoService;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,35 +23,26 @@ public class ProdutoBean extends GenericBean<Produto> implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String precoString;
 	
-	@Inject
-	private IProdutoService produtoService;
-	
     public ProdutoBean() {
 		super(Produto.class);
-		this.setService(produtoService);
 	}
     
     @PostConstruct
 	public void init() {
-		this.setModelSelecionado(new Produto());
-		this.setModels(this.produtoService.buscarTodos());
+		this.modelSelecionado = new Produto();
 	}
 	
 
 	public void abrirNovoModel() {
-		this.setModelSelecionado(new Produto());
+		this.modelSelecionado = new Produto();
 		this.precoString = "";
 	}
 
 	@Override
 	public void salvarModel() {
-		
-		this.getModelSelecionado().setPreco(
-				this.produtoService.formatarPreco(this.precoString));
-		
+		this.modelSelecionado.setPreco(((IProdutoService) this.service).formatarPreco(this.precoString));
 		super.salvarModel();
 		PrimeFaces.current().executeScript("formataPrecoEmTabela()");
-
 	}
 	
 }

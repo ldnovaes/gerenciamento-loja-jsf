@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
-import br.com.ldnovaes.daos.IProdutoDAO;
-import br.com.ldnovaes.models.Produto;
-import br.com.ldnovaes.models.Venda;
-import br.com.ldnovaes.services.generic.GenericService;
+import br.com.ldnovaes.dao.IProdutoDAO;
+import br.com.ldnovaes.model.Produto;
+import br.com.ldnovaes.model.Venda;
+import br.com.ldnovaes.service.generic.GenericService;
 
 @RequestScoped
 public class ProdutoService extends GenericService<Produto> implements IProdutoService{
@@ -26,8 +26,10 @@ public class ProdutoService extends GenericService<Produto> implements IProdutoS
 
 	@Override
 	public Double formatarPreco(String precoString) {
+		
 		String precoFormatado = precoString
 				.strip()
+				.replace("R$ ", "")
 				.replace(".", "")
 				.replace(",", ".");
 		Double preco = Double.valueOf(precoFormatado);

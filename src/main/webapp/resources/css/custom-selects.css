@@ -1,0 +1,81 @@
+body .ui-datepicker.ui-input-overlay, body .ui-selectonemenu-panel {
+	background-color: var(--select-picker-bg-color) !important;
+	color: var(--text-color);
+}
+
+body .ui-selectonemenu .ui-selectonemenu-label {
+	background-color: var(--select-picker-bg-color) !important;
+	color: var(--text-color);
+	border: 2px solid var(--border-color);
+}
+
+body .ui-datepicker .ui-datepicker-calendar td>a, body .ui-datepicker .ui-datepicker-calendar td>span, body .ui-selectonemenu-panel .ui-selectonemenu-items .ui-selectonemenu-item {
+	color: var(--text-color);
+}
+
+body .ui-autocomplete .ui-autocomplete-multiple-container .ui-autocomplete-input-token input {
+	color: var(--text-color)
+}
+
+body .ui-datepicker .ui-datepicker-calendar td>a:hover, body .ui-datepicker .ui-datepicker-calendar td.ui-datepicker-today>a:hover, body .ui-datepicker .ui-datepicker-calendar td.ui-datepicker-current-day>a:hover, body .ui-selectonemenu-panel .ui-selectonemenu-items .ui-selectonemenu-item.ui-state-hover {
+	background-color: var(--select-picker-bg-hover);
+	color: var(--text-color);
+}
+
+body .ui-autocomplete .ui-autocomplete-multiple-container .ui-autocomplete-token {
+	background-color: var(--select-picker-bg-active);
+	padding: 8px;
+	margin: 8px;
+	color: var(--text-color);
+}
+
+body .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-item.ui-autocomplete-row, body .ui-autocomplete-panel .ui-autocomplete-emptyMessage, body .ui-autocomplete-panel .ui-autocomplete-empty-message{
+	background-color: var(--select-picker-bg-color);
+	color: var(--text-color);
+	border-color: var(--border-color);
+}
+
+body .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-item.ui-state-highlight {
+	background-color: var(--select-picker-bg-hover) !important;
+	color: var(--text-color);
+	border-color: var(--border-color);
+}
+
+body .ui-datepicker .ui-datepicker-calendar td>a.ui-state-active, body .ui-datepicker .ui-datepicker-calendar td>span.ui-state-active, body .ui-selectonemenu-panel .ui-selectonemenu-items .ui-selectonemenu-item.ui-state-highlight {
+	background-color: var(--select-picker-bg-active);
+	color: var(--text-color);
+}
+
+body .ui-datepicker .ui-datepicker-calendar td.ui-datepicker-today>a.ui-state-active, body .ui-datepicker .ui-datepicker-calendar td.ui-datepicker-today>span.ui-state-active, body .ui-datepicker .ui-datepicker-calendar td.ui-datepicker-current-day>a.ui-state-active, body .ui-datepicker .ui-datepicker-calendar td.ui-datepicker-current-day>span.ui-state-active{
+	background-color: var(--select-picker-bg-today);
+	color: #61a2e3;
+}
+
+body .ui-datepicker .ui-datepicker-header{
+	background-color: var(--header-bg-color);
+	color: var(--text-color);
+}
+
+body .ui-datepicker .ui-datepicker-next:hover, body .ui-datepicker .ui-datepicker-prev:hover{
+	background-color: var(--select-picker-bg-hover);
+	color: var(--text-color);
+}
+
+body .ui-datepicker .ui-datepicker-next, body .ui-datepicker .ui-datepicker-prev{
+	color: var(--text-color);
+}
+
+body .ui-autocomplete .ui-autocomplete-multiple-container .ui-autocomplete-token .ui-autocomplete-token-label {
+    width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+body .ui-autocomplete-panel .ui-autocomplete-items {
+	background-color: var(--select-picker-bg-color);
+}
+
+body .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-item {
+	color: var(--text-color);
+}

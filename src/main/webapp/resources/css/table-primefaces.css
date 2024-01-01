@@ -38,15 +38,19 @@ body .ui-chkbox .ui-chkbox-box {
 }
 
 body .ui-chkbox .ui-chkbox-box.ui-state-hover, body .ui-chkbox .ui-chkbox-box.ui-state-active,
-body .ui-chkbox .ui-chkbox-box.ui-state-active.ui-state-hover {
+body .ui-chkbox .ui-chkbox-box.ui-state-active.ui-state-hover, body .ui-selectonemenu.ui-state-hover {
 	background-color: var(--hover-color) !important;
 	color: var(--text-color);
 }
 
-body .ui-inputfield {
+body .ui-inputfield, .ui-selectonemenu label.ui-selectonemenu-label {
 	background-color: var(--input-bg-color);
 	color: var(--text-color);
 	border: 2px solid var(--border-color);
+}
+
+body .ui-selectonemenu {
+	border: none;
 }
 
 body .ui-paginator {
@@ -59,17 +63,17 @@ body .ui-paginator .ui-paginator-pages .ui-paginator-page {
 }
 
 body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active {
-	background-color: var(--input-bg-color);
+	background-color: var(--paginator-bg-active);
 	color: var(--text-color);
 }
 
 body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-hover {
-	background-color: var(--hover-color);
+	background-color: var(--paginator-bg-hover);
 	color: var(--text-color);
 }
 
 body .ui-paginator .ui-paginator-first.ui-state-hover, body .ui-paginator .ui-paginator-prev.ui-state-hover, body .ui-paginator .ui-paginator-next.ui-state-hover, body .ui-paginator .ui-paginator-last.ui-state-hover{
-	background-color: var(--hover-color);
+	background-color: var(--paginator-bg-hover);
 	color: var(--text-color);
 }
 
@@ -80,4 +84,27 @@ body .ui-dialog .ui-dialog-titlebar, body .ui-dialog.ui-resizable .ui-dialog-con
 
 .field {
 	margin-top: 15px !important;
+}
+
+.ui-inputfield.ui-widget.ui-state-default.ui-corner-all.hasDatepicker, body .ui-inputfield, body .ui-selectonemenu{
+	width: 100% !important;
+}
+
+body .ui-datatable .ui-datatable-data>tr.ui-state-highlight, body .ui-datatable .ui-datatable-data>tr.ui-state-highlight:active {
+	background-color: var(--selectable) !important;
+}
+
+body .ui-datatable .ui-datatable-data>tr.ui-state-highlight:hover {
+	background-color: var(--hover-color) !important;
+}
+
+body .ui-dialog {
+	max-width: 100%;
+	max-height: 100%;
+	overflow-y: auto;
+}
+
+body .ui-dialog.ui-confirm-dialog .ui-dialog-content{
+	background-color: var(--tr-bg-color);
+	color: var(--text-color);
 }

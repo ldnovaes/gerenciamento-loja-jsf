@@ -49,5 +49,16 @@ mainContent.addEventListener("click", ()=>{
 	
 })
 
+window.addEventListener('scroll', function() {
+  var aside = document.querySelector('.aside-menu');
+  var scrollPosition = window.scrollY;
+
+  if (scrollPosition >= 60) {
+    aside.classList.add('scrolled');
+  } else {
+    aside.classList.remove('scrolled');
+  }
+});
+
 
 

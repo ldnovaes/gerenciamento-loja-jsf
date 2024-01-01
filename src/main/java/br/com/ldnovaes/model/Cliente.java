@@ -1,7 +1,9 @@
-package br.com.ldnovaes.models;
+package br.com.ldnovaes.model;
 
 import java.util.List;
 
+import br.com.ldnovaes.annotation.BuscaPersonalizada;
+import br.com.ldnovaes.annotation.Conversor;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,7 +24,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Cliente implements IModel{
+public class Cliente implements Persistente{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +38,8 @@ public class Cliente implements IModel{
 	private String codigo;
 	
 	@Column(name = "nome_cliente")
+	@Conversor(nome = "filtrarIgnorandoAcentos")
+	@BuscaPersonalizada(query = "SELECT obj FROM Cliente obj WHERE obj.nome ILIKE :input")
 	private String nome;
 	
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)

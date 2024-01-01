@@ -1,4 +1,4 @@
-package br.com.ldnovaes.beans;
+package br.com.ldnovaes.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -6,13 +6,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.ldnovaes.models.Cliente;
-import br.com.ldnovaes.models.Produto;
-import br.com.ldnovaes.models.Venda;
+import org.primefaces.PrimeFaces;
+import org.primefaces.model.LazyDataModel;
+
+import br.com.ldnovaes.bean.generic.GenericBean;
+import br.com.ldnovaes.exception.NaoEncontradoBancoDados;
+import br.com.ldnovaes.model.Cliente;
+import br.com.ldnovaes.model.Produto;
+import br.com.ldnovaes.model.Venda;
 import br.com.ldnovaes.services.IClienteService;
 import br.com.ldnovaes.services.IProdutoService;
 import lombok.Getter;
@@ -26,13 +33,16 @@ public class VendaBean extends GenericBean<Venda> implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	private Cliente cliente;
+	
 	@Inject
 	private IClienteService clienteService;
+	
 	@Inject
 	private IProdutoService produtoService;
-	private Cliente cliente;
-	private String nomeCliente;
-	private List<Produto> produtosSelecionados;	
+	
+	@Inject
+	private LazyDataModel<Cliente> clientes;
 
 	public VendaBean() {
 		super(Venda.class);
@@ -40,36 +50,31 @@ public class VendaBean extends GenericBean<Venda> implements Serializable{
 	
 	@PostConstruct
 	public void init() {
-		this.cliente = new Cliente();
-		this.produtosSelecionados = new ArrayList<>();
-		this.setModelSelecionado(new Venda());
-		this.setModels(this.getService().buscarTodos());
-	}
-	
-	@Override
-	public void salvarModel() {
-		cliente = this.clienteService.buscarPorNome(nomeCliente);
-		this.getModelSelecionado().setProdutos(this.produtosSelecionados);
-		this.getModelSelecionado().setCliente(cliente);
-		super.salvarModel();
+		this.modelSelecionado = new Venda();
 	}
 	
 
 	public void abrirNovoModel() {
-		this.cliente = new Cliente();
-		this.produtosSelecionados = new ArrayList<>();
-		this.setModelSelecionado(new Venda());
+		this.modelSelecionado = new Venda();
 	}
 	
-	public List<String> completarNomeCliente(String query) {
+	public List<Cliente> completarCliente(String query) {
         String queryLowerCase = query.toLowerCase();
-        List<String> clientesNomes = new ArrayList<>();
-        List<Cliente> clientes = this.clienteService.buscarTodos();
-        for (Cliente cliente: clientes) {
-        	clientesNomes.add(cliente.getNome());
-        }
 
-        return clientesNomes.stream().filter(t -> t.toLowerCase().startsWith(queryLowerCase)).collect(Collectors.toList());
+        List<Cliente> clientes;
+        
+        try {
+			 clientes = this.clienteService.listarPorNome(query)
+						.stream()
+						.filter(t -> t.getNome().toLowerCase().contains(queryLowerCase))
+						.collect(Collectors.toList());;
+			} catch (NoSuchFieldException | SecurityException | NaoEncontradoBancoDados e) {
+				 clientes = new ArrayList<>();
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.toString()));
+				PrimeFaces.current().ajax().update("form:messages", "form:dt-models");
+			}
+	        
+	        return clientes;
     }
 	
 

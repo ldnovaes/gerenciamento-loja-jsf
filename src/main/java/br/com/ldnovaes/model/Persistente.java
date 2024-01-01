@@ -1,7 +1,7 @@
-package br.com.ldnovaes.models;
+package br.com.ldnovaes.model;
 
 
-public interface IModel {
+public interface Persistente {
 	
 	public Long getId();
 	public void setId(Long id);

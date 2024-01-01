@@ -40,7 +40,7 @@
 					value="#{vendaBean.models}" reflow="true" styleClass="models-table"
 					selection="#{vendaBean.modelsSelecionados}" rowKey="#{venda.id}"
 					paginator="true" rows="10" rowSelectMode="add"
-					paginatorPosition="bottom">
+					paginatorPosition="bottom" lazy="true">
 					<f:facet name="header">
 						<div class="models-table-header"
 							style="display: flex; justify-content: space-between;">
@@ -82,7 +82,7 @@
 							oncomplete="PF('manageModelDialog').show()"
 							styleClass="edit-button rounded-button ui-button-success"
 							process="@this">
-							<f:setPropertyActionListener value="venda"
+							<f:setPropertyActionListener value="#{venda}"
 								target="#{vendaBean.modelSelecionado}" />
 							<p:resetInput target=":dialogs:manage-model-content" />
 						</p:commandButton>
@@ -105,20 +105,23 @@
 
 							<div class="field">
 								<p:outputLabel value="Nome do Cliente" for="@next" />
-								<p:autoComplete id="nome-cliente"
-									value="#{vendaBean.nomeCliente}"
-									completeMethod="#{vendaBean.completarNomeCliente}"
-									scrollHeight="250" />
+								<p:autoComplete id="cliente"
+									value="#{vendaBean.modelSelecionado.cliente}" var="cliente"
+									itemLabel="#{cliente.nome}"
+									itemValue="#{cliente}" lazyModel="#{vendaBean.clientes}"
+									lazyField="nome" forceSelection="true"
+									emptyMessage="Nenhum resultado encontrado"
+									converter="#{clienteConverter}" maxResults="10" />
 							</div>
 
 							<div class="field">
-							<p:outputLabel value="Produtos" for="@next" />
+								<p:outputLabel value="Produtos" for="@next" />
 								<p:autoComplete id="produtos-input" multiple="true"
-									value="#{vendaBean.produtosSelecionados}"
-									completeMethod="#{vendaBean.completarProduto}"
-									var="produto" itemLabel="#{produto.nome}"
-									itemValue="#{produto}" converter="#{produtoConverter}"
-									forceSelection="true" scrollHeight="250">
+									value="#{vendaBean.modelSelecionado.produtos}"
+									completeMethod="#{vendaBean.completarProduto}" var="produto"
+									itemLabel="#{produto.nome}" itemValue="#{produto}"
+									converter="#{produtoConverter}" forceSelection="true"
+									scrollHeight="250">
 									<p:column>
 										<h:outputText
 											style="vertical-align: middle; margin-left: .5rem"

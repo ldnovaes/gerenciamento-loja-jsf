@@ -1,7 +1,7 @@
-function mascara(o,f){ 
+function mascara(o, f){ 
 	v_obj=o 
 	v_fun=f 
-	setTimeout("execmascara()",1) 
+	setTimeout("execmascara()", 1) 
 } 
 
 function execmascara(){ 
@@ -15,6 +15,7 @@ function moeda(v){
 	v=v.replace(/(\d{1})(\d{8})$/,"$1.$2") // coloca ponto antes dos ultimos 8 digitos 
 	v=v.replace(/(\d{1})(\d{5})$/,"$1.$2") // coloca ponto antes dos ultimos 5 digitos 
 	v=v.replace(/(\d{1})(\d{1,2})$/,"$1,$2") // coloca virgula antes dos ultimos 2 digitos 
+	v = "R$ " + v;
 	return v; 
 }
 
@@ -35,4 +36,4 @@ function formataPrecoEmTabela() {
 	});
 }
 
-formataPrecoEmTabela();d
+formataPrecoEmTabela();

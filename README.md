@@ -7,7 +7,7 @@
   <h3 align="center">Projeto JSF para Gerenciamento de Vendas</h3>
 
   <p align="center">
-    Um projetinho desenvolvido como trabalho para o curso de Back-End da EBAC e também para desenvolvimento do meu conhecimento com JavaServer Faces.
+    Um projetinho para aprimoramento do meu conhecimento com JavaServer Faces. Esse projeto implementa tecnologias primordiais para funcionamento de uma aplicação JSF, como também utiliza Design Patterns e princípios SOLID para um código fluído e limpo. 
     <br />
     <br />
   </p>
@@ -101,9 +101,15 @@ Esse projeto consite em manusear vendas de forma rápida e prática. Para tal é
 Já na página de cadastro de venda, de acordo com o que é digitado no campo `Produto` e `Cliente` o sistema é capaz de pesquisar através desses nomes para endereçar o Cliente e o Produto à Venda de forma automática.
 <p align="right">(<a href="#top">Topo</a>)</p>
 
+## <span id="uso">Entendendo o Projeto</span>
+
+Esse projeto trabalha com modelo de classes genéricas que pode ser implementada por muitas outras sem afetar o seu funcionamento. Isso possibilita um melhor reaproveitamento de códigos. Um exemplo disso é um GenericDAO que é capaz de resolver qualquer CRUD independente de qual entity estamos trabalhando. Dessa forma, se uma entity não precisa ter métodos personalizados, o GenericDAO deve ser suficiente para atender seus problemas.
+Também deve-se notar que usa-se muito de anotações para resolver problemas em RUNTIME. Caso for contribuir, não esqueça de ler a documentação referente ao projeto.
+<p align="right">(<a href="#top">Topo</a>)</p>
+
 ## <span id="licenca">Licença</span>
 
-Distribuído sob a licença MIT. Veja `LICENSE.txt` para mais informações.
+Distribuído sob a licença GNU. Veja `LICENSE.txt` para mais informações.
 
 <p align="right">(<a href="#top">Topo</a>)</p>
 
