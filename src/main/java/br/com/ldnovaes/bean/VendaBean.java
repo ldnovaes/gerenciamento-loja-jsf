@@ -20,8 +20,8 @@ import br.com.ldnovaes.exception.NaoEncontradoBancoDados;
 import br.com.ldnovaes.model.Cliente;
 import br.com.ldnovaes.model.Produto;
 import br.com.ldnovaes.model.Venda;
-import br.com.ldnovaes.services.IClienteService;
-import br.com.ldnovaes.services.IProdutoService;
+import br.com.ldnovaes.service.IClienteService;
+import br.com.ldnovaes.service.IProdutoService;
 import lombok.Getter;
 import lombok.Setter;
 

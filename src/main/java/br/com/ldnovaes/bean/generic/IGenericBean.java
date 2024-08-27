@@ -65,7 +65,7 @@ public interface IGenericBean<T extends Persistente> {
 	 * 
 	 * @return true para caso haja mais de um modelo selecionado e false para caso não haja nenhum.
 	 */
-	public boolean hasModelsSelecionados();
+	public boolean temModelsSelecionados();
 	
 	/**
 	 * <p>Esse método apaga vários registros selecionados de uma única vez.</p> 

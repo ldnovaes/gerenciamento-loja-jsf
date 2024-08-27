@@ -1,4 +1,4 @@
-package br.com.ldnovaes.services;
+package br.com.ldnovaes.service;
 
 import java.util.Map;
 import java.util.stream.Collectors;

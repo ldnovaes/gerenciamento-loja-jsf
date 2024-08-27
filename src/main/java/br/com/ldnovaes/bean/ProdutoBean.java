@@ -10,7 +10,7 @@ import org.primefaces.PrimeFaces;
 
 import br.com.ldnovaes.bean.generic.GenericBean;
 import br.com.ldnovaes.model.Produto;
-import br.com.ldnovaes.services.IProdutoService;
+import br.com.ldnovaes.service.IProdutoService;
 import lombok.Getter;
 import lombok.Setter;
 

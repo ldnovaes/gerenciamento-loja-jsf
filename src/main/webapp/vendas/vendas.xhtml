@@ -23,9 +23,9 @@
 						</p:commandButton>
 						<p:commandButton id="delete-models-button"
 							value="#{vendaBean.botaoMensagemDeletar}" icon="pi pi-trash"
-							actionListener="#{vendaBean.deleteModelsSelecionados}"
+							actionListener="#{vendaBean.deletarModelsSelecionados}"
 							styleClass="ui-button-danger"
-							disabled="#{!vendaBean.hasModelsSelecionados()}" update="@this">
+							disabled="#{!vendaBean.temModelsSelecionados()}" update="@this">
 							<p:confirm header="Confirmar?"
 								message="Excluir as vendas selecionadas?"
 								icon="pi pi-exclamation-triangle" />

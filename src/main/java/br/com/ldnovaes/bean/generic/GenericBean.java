@@ -107,7 +107,7 @@ public abstract class GenericBean<T extends Persistente> implements IGenericBean
 
 	@Override
 	public String getBotaoMensagemDeletar() {
-		if (hasModelsSelecionados()) {
+		if (temModelsSelecionados()) {
 			int quantidadeSelecionados = this.modelsSelecionados.size();
 			return quantidadeSelecionados > 1 ? quantidadeSelecionados + " " + this.modelClassName.toLowerCase() + "s selecionados" : "1 " + this.modelClassName + " selecionado";
 		}
@@ -115,7 +115,7 @@ public abstract class GenericBean<T extends Persistente> implements IGenericBean
 	}
 
 	@Override
-	public boolean hasModelsSelecionados() {
+	public boolean temModelsSelecionados() {
 		return this.modelsSelecionados != null && !this.modelsSelecionados.isEmpty();
 	}
 	

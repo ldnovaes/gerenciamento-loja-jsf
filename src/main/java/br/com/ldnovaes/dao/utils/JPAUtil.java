@@ -1,4 +1,4 @@
-package br.com.ldnovaes.daos.utils;
+package br.com.ldnovaes.dao.utils;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Disposes;
