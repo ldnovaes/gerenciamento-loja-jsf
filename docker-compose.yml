@@ -20,5 +20,5 @@ services:
       - postgres-compose
     ports:
       - "8089:8080"
-
-      
+    environment:
+      - ENVIRONMENT=prod

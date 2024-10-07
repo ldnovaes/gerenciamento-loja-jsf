@@ -1,4 +1,4 @@
-package br.com.ldnovaes.bean;
+package br.com.ldnovaes.controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import javax.inject.Named;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.LazyDataModel;
 
-import br.com.ldnovaes.bean.generic.GenericBean;
+import br.com.ldnovaes.controller.generic.GenericBean;
 import br.com.ldnovaes.exception.NaoEncontradoBancoDados;
 import br.com.ldnovaes.model.Cliente;
 import br.com.ldnovaes.model.Produto;

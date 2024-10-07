@@ -1,4 +1,4 @@
-package br.com.ldnovaes.bean;
+package br.com.ldnovaes.controller;
 
 import java.io.Serializable;
 
@@ -8,7 +8,7 @@ import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
 
-import br.com.ldnovaes.bean.generic.GenericBean;
+import br.com.ldnovaes.controller.generic.GenericBean;
 import br.com.ldnovaes.model.Produto;
 import br.com.ldnovaes.service.IProdutoService;
 import lombok.Getter;

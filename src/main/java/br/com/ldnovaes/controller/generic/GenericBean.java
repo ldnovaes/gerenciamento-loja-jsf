@@ -1,4 +1,4 @@
-package br.com.ldnovaes.bean.generic;
+package br.com.ldnovaes.controller.generic;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ import lombok.Setter;
  *     }
  * </pre>
  * 
- * @see br.com.ldnovaes.bean.generic.IGenericBean
+ * @see br.com.ldnovaes.controller.generic.IGenericBean
  * @see br.com.ldnovaes.model.Persistente
  * @author ldnovaes
  */

@@ -1,4 +1,4 @@
-package br.com.ldnovaes.bean.generic;
+package br.com.ldnovaes.controller.generic;
 
 import org.primefaces.event.data.PageEvent;
 

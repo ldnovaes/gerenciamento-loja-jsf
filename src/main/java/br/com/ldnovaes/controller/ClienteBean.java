@@ -1,4 +1,4 @@
-package br.com.ldnovaes.bean;
+package br.com.ldnovaes.controller;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import br.com.ldnovaes.bean.generic.GenericBean;
+import br.com.ldnovaes.controller.generic.GenericBean;
 import br.com.ldnovaes.model.Cliente;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,7 +30,7 @@ public class ClienteBean extends GenericBean<Cliente> implements Serializable {
 	
 
 	public void abrirNovoModel() {
-		this.setModelSelecionado(new Cliente());
+		this.setModelSelecionado(modelSelecionado);
 	}
 	
     
